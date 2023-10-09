@@ -281,6 +281,7 @@ $ python3 unittest -m tests/test_console.py
 ```
 
 ## Authors :black_nib:
-* **Ouko Franchez** <[OukoFranchez](https://github.com/OukoFranchez)>
-* **Stosh Odhiambo** <[Stosh09](https://github.com/Stosh09)>
+| [<img src="https://avatars.githubusercontent.com/u/125689995?v=4" width="110" style="border-radius: 50%"><br><sub>Stosh Odhiambo<br><sup>@Stosh09](https://github.com/Stosh09) | [<img src="https://avatars.githubusercontent.com/u/96543749?v=4" width="110" style="border-radius: 50%"><br><sub>Ouko Franchez<br><sup>@OukoFranchez](https://github.com/OukoFranchez) |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|
+
 
