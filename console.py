@@ -17,11 +17,12 @@ from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """
-    A class that represents a command line interface for a specific application.
+    A class that represents a command line interface
+    for a specific application.
 
     Attributes:
-        prompt (str): The prompt string displayed to the user.
-        classes (dict): A dictionary that maps class names to their corresponding classes.
+        prompt (str): The prompt string displayed to the user.classes (dict):
+        A dictionary that maps class names to their corresponding classes.
     """
 
     prompt = "(hbnb) "
@@ -37,7 +38,8 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """
-        Placeholder method that does nothing when the user enters an empty line.
+        Placeholder method that does nothing when the
+        user enters an empty line.
 
         Example Usage:
         command = HBNBCommand()
@@ -53,19 +55,21 @@ class HBNBCommand(cmd.Cmd):
         """
         Execute the do_EOF command.
 
-        This command is called when the user enters Ctrl+D. 
-        It simply prints a newline character and returns True, 
+        This command is called when the user enters Ctrl+D.
+        It simply prints a newline character and returns True,
         indicating that the program should exit.
 
         Args:
-            arg (str): The argument passed to the method. It is not used in this method.
+            arg (str): The argument passed to the method.
+            It is not used in this method.
 
         Returns:
             bool: True, indicating that the program should exit.
 
         Example:
             command = HBNBCommand()
-            command.do_EOF("")  # Output: prints a newline character and returns True
+            command.do_EOF("")  # Output: prints a
+            newline character and returns True
         """
         print()
         return True
@@ -74,7 +78,8 @@ class HBNBCommand(cmd.Cmd):
         """
         Exit the command line interface program.
 
-        :param arg: The argument passed to the method. It is not used in this method.
+        :param arg: The argument passed to the method.
+        It is not used in this method.
         :type arg: str
         :return: True, indicating that the program should exit.
         :rtype: bool
@@ -83,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_quit(self):
         """
-        Provides a brief explanation of how to use the `quit` 
+        Provides a brief explanation of how to use the `quit`
         command in the command line interpreter program.
 
         Example Usage:
@@ -94,9 +99,10 @@ class HBNBCommand(cmd.Cmd):
         - None
 
         Flow:
-        - The method simply prints the usage instructions for the `quit` command,
+        - The method simply prints the usage
+        instructions for the `quit` command,
         which is "Usage: quit".
-        - It also prints a brief description of what the command does, 
+        - It also prints a brief description of what the command does,
         which is "command exits the command line interpreter program".
 
         Outputs:
@@ -114,7 +120,7 @@ class HBNBCommand(cmd.Cmd):
 
         Example Usage:
             command = HBNBCommand()
-            command.do_create("User")  # Output: prints the id of the newly 
+            command.do_create("User")  # Output: prints the id of the newly
             created User instance
 
         Raises:
@@ -136,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_create(self):
         """
-        Provides a brief explanation of how to use the create command 
+        Provides a brief explanation of how to use the create command
         in the command line interpreter program.
 
         Example Usage:
@@ -147,7 +153,8 @@ class HBNBCommand(cmd.Cmd):
         - None
 
         Flow:
-        - The method simply prints the usage instructions for the create command, 
+        - The method simply prints the usage
+        instructions for the create command,
         which is "create <object_name>".
 
         Outputs:
@@ -157,11 +164,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """
-        Retrieve and print the string representation of an instance 
+        Retrieve and print the string representation of an instance
         based on its class name and ID.
 
         Args:
-            arg (str): The argument passed to the method. 
+            arg (str): The argument passed to the method.
             It should be in the format "class_name instance_id".
 
         Returns:
@@ -169,7 +176,7 @@ class HBNBCommand(cmd.Cmd):
 
         Example Usage:
             command = HBNBCommand()
-            command.do_show("User 123")  # Output: prints the string 
+            command.do_show("User 123")  # Output: prints the string
             representation of the User instance with ID 123
         """
         if not arg or len(arg) == 0:
@@ -196,7 +203,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_show(self):
         """
-        Provides a brief explanation of how to use the show command 
+        Provides a brief explanation of how to use the show command
         in the command line interpreter program.
 
         Example Usage:
@@ -207,7 +214,7 @@ class HBNBCommand(cmd.Cmd):
         - None
 
         Flow:
-        - The method simply prints the usage instructions for the show 
+        - The method simply prints the usage instructions for the show
         command, which is "show <object_name> <object_id>".
 
         Outputs:
@@ -220,7 +227,7 @@ class HBNBCommand(cmd.Cmd):
         Delete an instance from the database based on its class name and ID.
 
         Args:
-            arg (str): The argument passed to the method. 
+            arg (str): The argument passed to the method.
             It should be in the format "class_name instance_id".
 
         Returns:
@@ -258,7 +265,8 @@ class HBNBCommand(cmd.Cmd):
 
     def help_destroy(self):
         """
-        Provides documentation for the `destroy` command in the `HBNBCommand` class.
+        Provides documentation for the `destroy`
+        command in the `HBNBCommand` class.
 
         Example Usage:
         command = HBNBCommand()
@@ -268,7 +276,9 @@ class HBNBCommand(cmd.Cmd):
         - None
 
         Flow:
-        - The method simply prints the usage instructions for the `destroy` command, which is "destroy <object_name> <object_id>".
+        - The method simply prints the usage instructions
+        for the `destroy` command, which is
+        "destroy <object_name> <object_id>".
 
         Outputs:
         - None
@@ -277,12 +287,12 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """
-        Retrieve and print a list of all instances of a 
+        Retrieve and print a list of all instances of a
         specific class or all instances of all classes.
 
         Args:
-            arg (str): The argument passed to the method. 
-            It can be an empty string, a class name, 
+            arg (str): The argument passed to the method.
+            It can be an empty string, a class name,
             or a combination of a class name and an object ID.
 
         Returns:
@@ -290,9 +300,9 @@ class HBNBCommand(cmd.Cmd):
 
         Example Usage:
             command = HBNBCommand()
-            command.do_all("")  # Output: prints a 
+            command.do_all("")  # Output: prints a
             list of all instances of all classes
-            command.do_all("User")  # Output: prints a 
+            command.do_all("User")  # Output: prints a
             list of all instances of the User class
         """
         args = arg.split()
@@ -308,7 +318,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_all(self):
         """
-        Print the usage instructions and a 
+        Print the usage instructions and a
         brief description of the 'all' command.
 
         Usage: all [object_name]
@@ -334,7 +344,7 @@ class HBNBCommand(cmd.Cmd):
 
         Code Analysis:
             - The code checks if the arg is empty or missing.
-            - If the arg is empty or missing, it prints the error message 
+            - If the arg is empty or missing, it prints the error message
             "** class name missing **" and returns.
         """
         if not arg or len(arg) == 0:
@@ -368,7 +378,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_update(self):
         """
-        Provides a brief explanation of how to use the 
+        Provides a brief explanation of how to use the
         update command in the command line interpreter program.
 
         Example Usage:
@@ -379,8 +389,9 @@ class HBNBCommand(cmd.Cmd):
         - None
 
         Flow:
-        The method simply prints the usage instructions for the 
-        update command, which is "update <class name> <id> <attribute name> "<attribute value>"".
+        The method simply prints the usage instructions for the
+        update command, which is
+        "update <class name> <id> <attribute name> "<attribute value>"".
 
         Outputs:
         None
@@ -396,7 +407,7 @@ class HBNBCommand(cmd.Cmd):
 
         Example Usage:
             command = HBNBCommand()
-            command.do_count("User")  # Output: prints the count of 
+            command.do_count("User")  # Output: prints the count of
             User instances in the database
 
         Raises:
@@ -422,11 +433,11 @@ class HBNBCommand(cmd.Cmd):
         """
         Handle unrecognized commands.
 
-        This method parses the input argument and calls the 
+        This method parses the input argument and calls the
         appropriate method based on the syntax of the command.
 
         Args:
-            arg (str): The argument passed to the method. 
+            arg (str): The argument passed to the method.
             It represents the unrecognized command.
 
         Returns:
@@ -434,7 +445,7 @@ class HBNBCommand(cmd.Cmd):
 
         Example Usage:
             command = HBNBCommand()
-            command.default("User.all()")  # Output: 
+            command.default("User.all()")  # Output:
             prints a list of all instances of the User class
         """
         args = arg.split('.')
