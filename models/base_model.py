@@ -58,7 +58,22 @@ class BaseModel:
 
     def save(self):
         """
-        Updates the 'updated_at' attribute to the current datetime and saves the object to storage.
+        Updates the 'updated_at' attribute of an object and saves the object to storage.
+
+        Example Usage:
+        obj = BaseModel()
+        obj.save()
+
+        Inputs:
+        - None
+
+        Flow:
+        1. The 'save' method is called on an instance of the 'BaseModel' class.
+        2. The 'updated_at' attribute of the object is updated with the current datetime.
+        3. The 'save' method of the 'storage' object is called to save the object to storage.
+
+        Outputs:
+        - None
         """
         self.updated_at = datetime.now()
         storage.save()
