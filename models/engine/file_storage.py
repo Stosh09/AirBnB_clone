@@ -110,7 +110,6 @@ class FileStorage:
                 obj = classes[v["__class__"]](**v)
                 self.__objects[k] = obj
         except FileNotFoundError:
-            pass
             for k, v in obj_dict.items():
                 obj = classes[v["__class__"]](**v)
                 self.__objects[k] = obj
