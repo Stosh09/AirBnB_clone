@@ -1,66 +1,83 @@
 #!/usr/bin/python3
-"""This module defines a base class for all models in our hbnb clone"""
-import os
-from uuid import uuid4, UUID
-from sqlalchemy import Column, Integer, String, Float, DateTime
-from sqlalchemy.ext.declarative import declarative_base
+"""
+Defines the BaeModel class
+Parent to all classes
+"""
+
+import uuid
 from datetime import datetime
+from models import storage
 
-STORAGE_TYPE = os.environ.get('HBNB_TYPE_STORAGE')
-
-if STORAGE_TYPE == 'db':
-    Base = declarative_base()
-else:
-    class Base:
-        pass
 
 class BaseModel:
+    """
+    Defines the BaseModel class.
 
+    Methods:
+        __init__(*args, **kwargs): Initializes a new instance of the class.
+        __str__(): Generates a string representation of the object.
+        save(): Updates the 'updated_at' attribute and saves the object to storage.
+        to_dict(): Converts the object to a dictionary representation.
     """
-        attributes and functions for BaseModel class
-    """
-    id = Column(String(60), nullable=False, primary_key=True)
-    created_at = Column(DateTime, nullable=False,
-                        default=datetime.utcnow())
-    updated_at = Column(DateTime, nullable=False,
-                        default=datetime.utcnow())
 
     def __init__(self, *args, **kwargs):
         """
-            instantiation of new BaseModel Class
+        Initializes a new instance of the BaseModel class.
+
+        If it is a new instance (not from a dictionary representation),
+        add a call to the method new(self) on storage.
+
+        Args:
+            *args: Variable arguments.
+            **kwargs: Keyword arguments.
+
+        Returns:
+            BaseModel instance.
         """
         if kwargs:
-            self.__set_attributes(kwargs)
+            for k, v in kwargs.items():
+                if k == "created_at" or k == "updated_at":
+                    v = datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f")
+                if k != "__class__":
+                    setattr(self, k, v)
         else:
-            self.id = str(uuid4())
-            self.created_at = datetime.utcnow()
-
-    def __set_attributes(self, attr_dict):
-        """
-            private: converts attr_dict values to python class attributes
-        """
-        if 'id' not in attr_dict:
-            attr_dict['id'] = str(uuid4())
-        if 'created_at' not in attr_dict:
-            attr_dict['created_at'] = datetime.utcnow()
-        elif not isinstance(attr_dict['created_at'], datetime):
-            attr_dict['created_at'] = datetime.strptime(
-                attr_dict['created_at'], "%Y-%m-%d %H:%M:%S.%f"
-            )
-        if 'updated_at' not in attr_dict:
-            attr_dict['updated_at'] = datetime.utcnow()
-        elif not isinstance(attr_dict['updated_at'], datetime):
-            attr_dict['updated_at'] = datetime.strptime(
-                attr_dict['updated_at'], "%Y-%m-%d %H:%M:%S.%f"
-            )
-        if STORAGE_TYPE != 'db':
-            attr_dict.pop('__class__', None)
-        for attr, val in attr_dict.items():
-            setattr(self, attr, val)
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
         """
-            returns string type representation of object instance
+        Generates a string representation of the object.
+
+        Returns:
+            str: String representation of the object.
         """
-        class_name = type(self).__name__
-        return '[{}] ({}) {}'.format(class_name, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)
+
+    def save(self):
+        """
+        Updates the 'updated_at' attribute to the current datetime and saves the object to storage.
+        """
+        self.updated_at = datetime.now()
+        storage.save()
+
+    def to_dict(self):
+        """
+        Converts the object to a dictionary representation.
+
+        Returns:
+            dict: Dictionary representation of the object.
+        """
+        class_dict = {
+            "__class__": self.__class__.__name__
+        }
+        for k, v in self.__dict__.items():
+            if k == "created_at":
+                class_dict[k] = v.isoformat()
+            elif k == "updated_at":
+                class_dict[k] = v.isoformat()
+            else:
+                class_dict[k] = v
+        return class_dict
