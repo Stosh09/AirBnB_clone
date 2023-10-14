@@ -239,7 +239,8 @@ class TestConsole(unittest.TestCase):
         standard output with a `StringIO` object.
         2. Call the `onecmd` method of the
         `HBNBCommand` class with the command "update".
-        3. Assert that the output of the command is "** class name missing **\n".
+        3. Assert that the output of the command is
+        "** class name missing **\n".
 
         Outputs: None
         """
@@ -279,8 +280,8 @@ class TestConsole(unittest.TestCase):
         Code Analysis:
         - Inputs: None
         - Flow:
-            1. Use the `patch` function from the `unittest.mock`
-            module to temporarily replace the standard output with a `StringIO` object.
+            1. Use the `patch` function from the `unittest.mock` module to
+            temporarily replace the standard output with a `StringIO` object.
             2. Call the `onecmd` method of the
             `HBNBCommand` class with the command "show".
             3. Assert that the output of the command is
@@ -312,8 +313,8 @@ class TestConsole(unittest.TestCase):
         Inputs: None
 
         Flow:
-        1. Use the `patch` function from the `unittest.mock`
-        module to temporarily replace the standard output with a `StringIO` object.
+        1. Use the `patch` function from the `unittest.mock` module to
+        temporarily replace the standard output with a `StringIO` object.
         2. Call the `onecmd` method of the `HBNBCommand`
         class with the command "User.count()".
         3. Assert that the output of the command is an integer.
@@ -340,7 +341,8 @@ class TestConsole(unittest.TestCase):
         Inputs: None
 
         Flow:
-        1. Create a `pep8.StyleGuide` object with `quiet=False` to enable verbose output.
+        1. Create a `pep8.StyleGuide` object with `quiet=False`
+        to enable verbose output.
         2. Initialize the `errors` variable to 0.
         3. Create a list `file` containing the name of the file to be checked,
         in this case, "console.py".
