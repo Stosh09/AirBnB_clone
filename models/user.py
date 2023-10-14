@@ -22,7 +22,6 @@ class User(BaseModel):
     last_name = ""
     first_name = ""
 
-
     def __init__(self, *args, **kwargs):
         """
         Method to initialize the User class instance
