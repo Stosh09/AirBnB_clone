@@ -48,20 +48,25 @@ class Amenity(BaseModel):
         - self: The first parameter of the method,
         which refers to the instance of the class itself.
         - *args: Variable length argument list,
-        which allows the method to accept any number of positional arguments.
+        which allows the method to accept
+        any number of positional arguments.
         - **kwargs: Variable length keyword argument
-        dictionary, which allows the method to accept any number of keyword arguments.
+        dictionary, which allows the method to
+        accept any number of keyword arguments.
 
         Flow:
         1. The super() function is called with the __init__
         ethod of the parent class BaseModel as an argument.
-        This initializes the attributes and methods inherited from the BaseModel class.
+        This initializes the attributes and methods
+        inherited from the BaseModel class.
         2. The *args and **kwargs arguments are passed to
         the __init__ method of the parent class, allowing
         the Amenity class to accept and handle any additional
         arguments passed during object creation.
 
         Outputs:
-        None. The __init__ method does not return any value. Its purpose is to initialize the object with the provided arguments and set its initial state.
+        None. The __init__ method does not return any value.
+        Its purpose is to initialize the object with
+        the provided arguments and set its initial state.
         """
         super().__init__(*args, **kwargs)
