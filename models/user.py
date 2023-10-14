@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module that defines class User
+Module defining user class
 """
 
 from models.base_model import BaseModel
@@ -19,8 +19,9 @@ class User(BaseModel):
 
     email = ""
     password = ""
-    first_name = ""
     last_name = ""
+    first_name = ""
+
 
     def __init__(self, *args, **kwargs):
         """
