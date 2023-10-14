@@ -49,7 +49,7 @@ class BaseModel:
 
         Returns:
             None
-            
+
         """
         if kwargs:
 

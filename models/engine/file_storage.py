@@ -15,29 +15,30 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class FileStorage:
     """
     Class to perform serialization and deserialization to JSON files.
 
     Attributes:
-        __file_path (str): The path to the JSON file 
+        __file_path (str): The path to the JSON file
         where the objects are stored.
         __objects (dict): A dictionary that stores the objects.
 
     Methods:
         all(self) -> dict:
-            Returns a dictionary of objects 
+            Returns a dictionary of objects
             stored in the __objects attribute.
 
         new(self, obj) -> None:
             Adds a new object to the __objects dictionary attribute.
 
         save(self) -> None:
-            Serializes the objects stored in the __objects 
+            Serializes the objects stored in the __objects
             dictionary attribute into a JSON file.
 
         reload(self) -> None:
-            Reloads and deserializes objects from 
+            Reloads and deserializes objects from
             a JSON file into the __objects dictionary attribute.
     """
 
@@ -46,11 +47,11 @@ class FileStorage:
 
     def all(self) -> dict:
         """
-        Returns a dictionary of objects stored in 
+        Returns a dictionary of objects stored in
         the __objects attribute of the FileStorage class.
 
         Returns:
-            dict: A dictionary containing the objects 
+            dict: A dictionary containing the objects
             stored in the FileStorage instance.
         """
         return self.__objects
@@ -70,7 +71,7 @@ class FileStorage:
 
     def save(self) -> None:
         """
-        Serializes the objects stored in the __objects 
+        Serializes the objects stored in the __objects
         dictionary attribute into a JSON file.
 
         Returns:
@@ -86,7 +87,7 @@ class FileStorage:
 
     def reload(self) -> None:
         """
-        Reloads and deserializes objects from 
+        Reloads and deserializes objects from
         a JSON file into the __objects dictionary attribute.
 
         Returns:
