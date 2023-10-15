@@ -6,54 +6,73 @@ Module for testing the Place class
 import json
 import os
 import unittest
-from datetime import datetime
 from models import storage
+from datetime import datetime
 from models.engine.file_storage import FileStorage
 from models.place import Place
 
 
 class testPlace(unittest.TestCase):
     """
-    Defines the test methods for testing the Place class
+    Defines the test methods to test the Place class
     """
-    def set_up(self):
+
+    def setUp(self):
         """
-        Sets up the initial conditions for the test case.
+        Set up the necessary environment for each
+        test case in the testPlace class.
 
-        This method checks if a file named "file.json"
-        exists and removes it if it does.
+        This method removes the "file.json"
+        file if it exists before each test.
 
-        Parameters:
-        - self: The object instance.
+        Inputs:
+        - None
 
-        Returns:
+        Flow:
+        1. Check if the "file.json" file exists.
+        2. If it exists, remove the "file.json" file.
+
+        Outputs:
         - None
         """
         if os.path.exists("file.json"):
             os.remove("file.json")
 
-    def tear_down(self):
+    def tearDown(self):
         """
-        Remove the "file.json" file if it exists.
+        Clean up the environment after each
+        test case in the testPlace class.
 
-        :return: None
+        This method removes the "file.json"
+        file if it exists.
         """
         if os.path.exists("file.json"):
             os.remove("file.json")
 
     def test_place_created(self):
         """
-        Test if an instance of the Place class
-        can be created successfully.
+        Test whether a Place object is successfully created.
 
-        :param self: The testPlace object.
-        :return: None
+        Example Usage:
+        place = Place()
+        self.assertTrue(place)
+
+        Inputs: None
+        Flow:
+        1. Create a new instance of the Place
+        class using the default constructor.
+        2. Use the assertTrue assertion to check
+        if the place object is truthy.
+
+        Outputs: None
         """
+
         self.assertTrue(Place())
 
     def test_place_attributes(self):
         """
-        Test if a Place object has all the required attributes.
+        Test whether a Place object has
+        all the required attributes.
 
         Example Usage:
         place_1 = Place()
@@ -90,38 +109,39 @@ class testPlace(unittest.TestCase):
 
     def test_place_id_type(self):
         """
-        Check if the 'id' attribute of a 'Place' object is of type string.
-
-        :param self: The 'testPlace' class instance.
-        :return: None
+        Test whether the id attribute of a
+        Place object is of type string.
 
         Example Usage:
         place_1 = Place()
         self.assertIsInstance(place_1.id, str)
 
-        In this example, a 'Place' object is created
-        and assigned to the variable 'place_1'.
-        The 'test_place_id_type' method is then called
-        with 'place_1' as the object to be tested. T
-        he method checks if the 'id' attribute of 'place_1'
-        is an instance of the 'str' class. I
-        f the assertion passes, it means
-        that the 'id' attribute is of type string.
+        Inputs: None
+        Flow:
+        1. Create a new instance of the Place
+        class using the default constructor.
+        2. Use the assertIsInstance assertion to
+        check if the id attribute of the place_1 object is of type string.
+
+        Outputs: None
         """
+
         place_1 = Place()
         self.assertIsInstance(place_1.id, str)
 
     def test_place_id_values(self):
         """
-        Test if the id attribute of two different instances
-        of the Place class are not equal.
+        Test whether the id attribute of two different
+        Place objects are not equal.
 
-        Inputs:
-        - None
-
-        Outputs:
-        - None
+        Example Usage:
+        place_1 = Place()
+        place_2 = Place()
+        self.assertIsNotNone(place_1.id)
+        self.assertIsNotNone(place_2.id)
+        self.assertNotEqual(place_1.id, place_2.id)
         """
+
         place_1 = Place()
         place_2 = Place()
         self.assertIsNotNone(place_1.id)
@@ -130,17 +150,11 @@ class testPlace(unittest.TestCase):
 
     def test_place_class_doc(self):
         """
-        Test if the Place class has a docstring and if
-        the __init__ method of the Place class has a docstring.
+        Test whether the Place class has a docstring and
+        whether the __init__ method of the Place class has a docstring.
 
         Inputs:
         - None
-
-        Flow:
-        1. Check if the length of the __doc__ attribute of
-        the Place class is greater than 3.
-        2. Check if the length of the __doc__ attribute of
-        the __init__ method of the Place class is greater than 3.
 
         Outputs:
         - None
@@ -149,6 +163,43 @@ class testPlace(unittest.TestCase):
         self.assertGreater(len(Place.__init__.__doc__), 3)
 
     def test_place_name(self):
+        """
+        Test the attributes of a Place object.
+
+        This method checks the attributes of a Place object,
+        such as name, user_id, city_id, description,
+        number_bathrooms, number_rooms, max_guest, price_by_night,
+        latitude, longitude, and amenity_ids. It also
+        verifies the initial values of these attributes and their types.
+
+        Example Usage:
+        place_1 = Place()
+        assert isinstance(place_1.name, str)
+        assert isinstance(place_1.user_id, str)
+        assert isinstance(place_1.city_id, str)
+        assert isinstance(place_1.description, str)
+        assert isinstance(place_1.number_bathrooms, int)
+        assert isinstance(place_1.number_rooms, int)
+        assert isinstance(place_1.max_guest, int)
+        assert isinstance(place_1.price_by_night, int)
+        assert isinstance(place_1.latitude, float)
+        assert isinstance(place_1.longitude, float)
+        assert isinstance(place_1.amenity_ids, list)
+        assert place_1.name == ""
+        assert place_1.user_id == ""
+        assert place_1.city_id == ""
+        assert place_1.description == ""
+        assert place_1.number_bathrooms == 0
+        assert place_1.number_rooms == 0
+        assert place_1.price_by_night == 0
+        assert place_1.max_guest == 0
+        assert place_1.longitude == 0.0
+        assert place_1.latitude == 0.0
+        assert place_1.amenity_ids == []
+        place_1.name = "Nairobi"
+        assert place_1.name == "Nairobi"
+        """
+
         place_1 = Place()
         self.assertIsInstance(place_1.name, str)
         self.assertIsInstance(place_1.user_id, str)
@@ -177,8 +228,8 @@ class testPlace(unittest.TestCase):
 
     def test_place_created_updated_at(self):
         """
-        Test if the created_at and updated_at attributes of
-        a Place object are instances of the datetime class.
+        Test whether the created_at and updated_at attributes
+        of a Place object are instances of the datetime class.
 
         Inputs:
         - None
@@ -192,8 +243,8 @@ class testPlace(unittest.TestCase):
 
     def test_place_save_updated_at(self):
         """
-        Test whether the updated_at attribute of a
-        Place object is updated correctly when the save method is called.
+        Test whether the updated_at attribute of a Place
+        object is updated when the save method is called.
 
         Example Usage:
         place = Place()
@@ -213,12 +264,10 @@ class testPlace(unittest.TestCase):
         """
         Test the to_dict method of the Place class.
 
-        This method checks if the to_dict method returns a dictionary,
-        if the dictionary contains the required attributes,
-        and if the dictionary does not contain
-        an attribute that was not set.
-        It also tests if the name attribute is
-        included in the dictionary after it is set.
+        This method checks if the to_dict method returns a
+        dictionary, if the dictionary contains the required
+        attributes,and if the dictionary does not
+        contain an attribute that was not set.
 
         Example Usage:
         place = Place()
@@ -233,6 +282,7 @@ class testPlace(unittest.TestCase):
         place_dict = place.to_dict()
         assert "name" in place_dict
         """
+
         place = Place()
         place_dict = place.to_dict()
         self.assertIsInstance(place_dict, dict)
@@ -248,7 +298,7 @@ class testPlace(unittest.TestCase):
     def test_place_save_to_file(self):
         """
         Test whether the save method of the Place class
-        correctly saves the object to a file.
+        successfully saves the object to a file.
 
         Example Usage:
         place = Place()
@@ -256,6 +306,12 @@ class testPlace(unittest.TestCase):
         assert os.path.exists("file.json") == True
 
         Inputs: None
+        Flow:
+        1. Create an instance of the Place class.
+        2. Call the save method on the place object.
+        3. Use the os.path.exists function to check if
+        the "file.json" file exists.
+
         Outputs: None
         """
 
@@ -265,9 +321,9 @@ class testPlace(unittest.TestCase):
 
     def test_place_reload_from_file(self):
         """
-        Test whether the reload method of the FileStorage class
-        correctly reloads and deserializes objects
-        from a JSON file into the __objects dictionary attribute.
+        Test whether the reload method of the FileStorage
+        class successfully reloads the objects from the file
+        and whether the reloaded objects contain the expected object.
         """
         place = Place()
         file = FileStorage()
@@ -283,16 +339,20 @@ class testPlace(unittest.TestCase):
         """
         Test the __str__ method of the Place class.
 
-        This method checks if the string representation of a
-        Place object matches the expected format.
+        This method creates an instance of the Place class and
+        tests if the __str__ method returns the expected string
+        representation of the object.
 
         Example Usage:
         place = Place()
         expected_str = "[Place] ({}) {}".format(place.id, place.__dict__)
         assert str(place) == expected_str
 
-        Inputs: None
-        Outputs: None
+        Inputs:
+        - None
+
+        Outputs:
+        - None
         """
 
         place = Place()
@@ -301,7 +361,8 @@ class testPlace(unittest.TestCase):
 
     def test_place_update_attributes(self):
         """
-        Test the functionality of updating attributes of a Place object.
+        Test whether the 'name' attribute of a 'Place' object can be
+        successfully updated and saved to the file storage.
 
         Example Usage:
         place = Place()
@@ -323,18 +384,16 @@ class testPlace(unittest.TestCase):
 
     def test_saving_and_loading(self):
         """
-        Test the functionality of saving and loading a
-        Place object using the FileStorage class.
+        Test whether the save and reload methods of the FileStorage
+        class successfully save and reload objects from a file.
 
-        Example Usage:
-        place = Place()
-        place_id = place.id
-        storage.save()
-        new_storage = FileStorage()
-        new_storage.reload()
-        loaded_place = new_storage.all()['Place.{}'.format(place_id)]
-        assert isinstance(loaded_place, Place)
+        Inputs:
+        - None
+
+        Outputs:
+        - None
         """
+
         place = Place()
         place_id = place.id
         storage.save()
