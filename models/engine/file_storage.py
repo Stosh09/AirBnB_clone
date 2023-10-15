@@ -7,13 +7,7 @@ and deserializes JSON file to instances
 
 import json
 from datetime import datetime
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
+
 
 
 class FileStorage:
@@ -85,14 +79,39 @@ class FileStorage:
         with open(self.__file_path, mode='w', encoding="utf-8") as f:
             json.dump(serial_objects, f)
 
-    def reload(self) -> None:
+    def reload(self):
         """
-        Reloads and deserializes objects from
-        a JSON file into the __objects dictionary attribute.
+        Deserializes objects from a JSON file and stores
+        them in the __objects dictionary attribute.
 
-        Returns:
-            None
+        Inputs:
+        - None
+
+        Flow:
+        1. Imports the necessary classes from the model files.
+        2. Tries to open the JSON file specified by the
+        __file_path attribute in read mode.
+        3. If the file exists, loads the contents of the
+        file into the obj_dict dictionary.
+        4. Iterates over each key-value pair in obj_dict.
+        5. For each key-value pair, creates an instance of
+        the corresponding class using the classes dictionary.
+        6. Initializes the instance with the values from the
+        dictionary using the **v syntax.
+        7. Adds the instance to the __objects dictionary
+        with the key as the object ID.
+        8. If the file does not exist, does nothing.
+
+        Outputs:
+        - None
         """
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
 
         classes = {
             "BaseModel": BaseModel,
@@ -107,10 +126,6 @@ class FileStorage:
         try:
             with open(self.__file_path, "r", encoding="utf-8") as f:
                 obj_dict = json.load(f)
-            for k, v in obj_dict.items():
-                obj = classes[v["__class__"]](**v)
-                self.__objects[k] = obj
-        except FileNotFoundError:
             for k, v in obj_dict.items():
                 obj = classes[v["__class__"]](**v)
                 self.__objects[k] = obj
