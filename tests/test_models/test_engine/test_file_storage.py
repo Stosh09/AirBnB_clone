@@ -76,7 +76,8 @@ class TestFileStorage(unittest.TestCase):
     def test_object_created(self):
         """
         Test whether an object of the FileStorage class
-        is created successfully and whether the all method returns a dictionary.
+        is created successfully and whether the all
+        method returns a dictionary.
 
         Inputs:
         - None
